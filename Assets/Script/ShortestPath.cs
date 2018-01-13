@@ -53,8 +53,11 @@ public class ShortestPath : MonoBehaviour {
         foreach (GameObject obj in nodes)
         {
             Node n = obj.GetComponent<Node>();
-            n.resetNode();
-            unexplored.Add(obj.transform);
+            if (n.isWalkable())
+            {
+                n.resetNode();
+                unexplored.Add(obj.transform);
+            }
         }
 
         // Set the starting node weight to 0;
@@ -83,16 +86,15 @@ public class ShortestPath : MonoBehaviour {
             Node currentNode = current.GetComponent<Node>();
             List<Transform> neighbours = currentNode.getNeighbourNode();
             foreach (Transform neighNode in neighbours)
-            {   
-                // We want to avoid those that had been explored.
-                if (unexplored.Contains(neighNode))
+            {
+                Node node = neighNode.GetComponent<Node>();
+
+                // We want to avoid those that had been explored and is not walkable.
+                if (unexplored.Contains(neighNode) && node.isWalkable())
                 {
                     // Get the distance of the object.
                     float distance = Vector3.Distance(neighNode.position, current.position);
                     distance = currentNode.getWeight() + distance;
-
-                    // Check the weight of the neightbour Node
-                    Node node = neighNode.GetComponent<Node>();
 
                     // If the added distance is less than the current weight.
                     if (distance < node.getWeight())

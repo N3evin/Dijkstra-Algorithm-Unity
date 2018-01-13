@@ -158,13 +158,6 @@ public class PlayerInput : MonoBehaviour {
             // Add the node to the block path list.
             blockPath.Add(node);
 
-            // Update the neighbours of all it's neighbour to ignore selected node.
-            foreach (Transform node in n.getNeighbourNode())
-            {
-                Node newNode = node.GetComponent<Node>();
-                newNode.reloadNeighbourNode();
-            }
-
             // If the block path is start node, we remove start node.
             if (node == startNode)
             {
@@ -199,13 +192,6 @@ public class PlayerInput : MonoBehaviour {
             // Remove selected node from the block path list.
             blockPath.Remove(node);
 
-            // Update the selected node neighbours to tell them the node is now walkable.
-            foreach (Transform node in n.getNeighbourNode())
-            {
-                Node newNode = node.GetComponent<Node>();
-                newNode.reloadNeighbourNode();
-            }
-
             node = null;
         }
     }
@@ -226,12 +212,6 @@ public class PlayerInput : MonoBehaviour {
             Renderer rend = path.GetComponent<Renderer>();
             rend.material.color = Color.white;
 
-            // Update all their neighbours that the path is now walkable.
-            foreach (Transform prev in n.getNeighbourNode())
-            {
-                Node prevNode = prev.GetComponent<Node>();
-                prevNode.reloadNeighbourNode();
-            }
         }
         // Clear the block path list and 
         blockPath.Clear();
@@ -258,6 +238,9 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Refresh Update Nodes Color.
+    /// </summary>
     private void updateNodeColor()
     {
         if (startNode != null)
