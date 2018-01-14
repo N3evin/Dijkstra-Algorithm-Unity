@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MinHeap : MonoBehaviour {
+public class MinHeap : MonoBehaviour
+{
 
     /// <summary>
     /// The node class for the heap.
@@ -33,14 +34,14 @@ public class MinHeap : MonoBehaviour {
 
     // Creating the heap.
     public void createHeap(Transform node)
-    {   
+    {
         // Generate the heap list.
         heap = new List<BinaryNode>();
 
         // Add the first node into the heap.
         heap.Add(new BinaryNode(node));
     }
-    
+
 
     /// <summary>
     /// Insert node into the heap
@@ -70,7 +71,7 @@ public class MinHeap : MonoBehaviour {
         heap[0] = temp;
 
         // Remove the last item from the heap.
-        Transform result = heap[heap.Count-1].getNode();
+        Transform result = heap[heap.Count - 1].getNode();
         heap.RemoveAt(heap.Count - 1);
 
         // Hepify the heap.
@@ -126,12 +127,11 @@ public class MinHeap : MonoBehaviour {
             heap[parent] = temp;
 
             this.bubbleUp(parent); // Continue bubble up if it's not the root node.
-            
+
         }
 
     }
 
-    // TODO: Fix unbalance heap.
     /// <summary>
     /// Heapify the heap
     /// </summary>
@@ -144,34 +144,19 @@ public class MinHeap : MonoBehaviour {
         int rightIndex = (2 * index) + 2;
         int smallest = index;
 
-        if (leftIndex > heap.Count - 1)
-        {
-            leftIndex = heap.Count - 1;
-        }
-
-        if (rightIndex > heap.Count - 1)
-        {
-            rightIndex = heap.Count - 1;
-        }
-
-        if (smallest > heap.Count - 1)
-        {
-            return;
-        }
-
         // Check if left child or right child has the smallest value.
-        if (heap[leftIndex].getWeight() < heap[smallest].getWeight())
+        if (leftIndex <= heap.Count - 1 && heap[leftIndex].getWeight() <= heap[smallest].getWeight())
         {
             smallest = leftIndex;
         }
 
-        else if (heap[rightIndex].getWeight() < heap[smallest].getWeight())
+        if (rightIndex <= heap.Count - 1 && heap[rightIndex].getWeight() <= heap[smallest].getWeight())
         {
             smallest = rightIndex;
         }
 
         // If there is a smallest child, swap and heapify again.
-        if(smallest != index)
+        if (smallest != index)
         {
             BinaryNode temp = heap[index];
             heap[index] = heap[smallest];
@@ -181,12 +166,11 @@ public class MinHeap : MonoBehaviour {
         }
     }
 
-
     public void displayHeap()
     {
         print("==================================");
         int counter = 0;
-        foreach(BinaryNode bNode in heap)
+        foreach (BinaryNode bNode in heap)
         {
             print("index " + counter + " : " + bNode.getNode().name + " (Weight: " + bNode.getWeight() + ")");
             counter++;
