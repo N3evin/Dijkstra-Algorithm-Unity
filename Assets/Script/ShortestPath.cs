@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-    
-public class ShortestPath : MonoBehaviour {
+
+public class ShortestPath : MonoBehaviour
+{
 
     private GameObject[] nodes;
 
@@ -27,7 +28,7 @@ public class ShortestPath : MonoBehaviour {
             Node currentNode = node.GetComponent<Node>();
             node = currentNode.getParentNode();
         }
-        
+
         // Reverse the list so that it will be from start to end.
         result.Reverse();
         return result;
@@ -43,7 +44,7 @@ public class ShortestPath : MonoBehaviour {
     {
         double startTime = Time.realtimeSinceStartup;
 
-        // Nodes that are explored
+        // Nodes that are unexplored
         List<Transform> unexplored = new List<Transform>();
 
         // We add all the nodes we found into unexplored.
@@ -61,8 +62,8 @@ public class ShortestPath : MonoBehaviour {
         Node startNode = start.GetComponent<Node>();
         startNode.setWeight(0);
 
-        while(unexplored.Count > 0)
-        {   
+        while (unexplored.Count > 0)
+        {
             // Sort the explored by their weight in ascending order.
             unexplored.Sort((x, y) => x.GetComponent<Node>().getWeight().CompareTo(y.GetComponent<Node>().getWeight()));
 
