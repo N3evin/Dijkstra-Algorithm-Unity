@@ -10,3 +10,4 @@ Shortest path finding using Dijkstra's Algorithm in Unity 3D, coded with C#.
 ### Features:
 - Finding the shortest path from A to B.
 - Avoiding paths that are block.
+- RTS Units style selection system (drag mouse to select multiple nodes).
