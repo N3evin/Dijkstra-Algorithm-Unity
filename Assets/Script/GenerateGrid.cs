@@ -24,11 +24,11 @@ public class GenerateGrid : MonoBehaviour {
     {
 
         int counter = 0;
-        for(int i = 0; i < column; i++)
+        for(int i = 0; i < row; i++)
         {
             for (int j = 0; j < column; j++)
             {
-                Transform node = Instantiate(nodePrefab, new Vector3((j * padding) + gameObject.transform.position.x, 0, (i * padding) + gameObject.transform.position.z), Quaternion.identity);
+                Transform node = Instantiate(nodePrefab, new Vector3((j * padding) + gameObject.transform.position.x, gameObject.transform.position.y, (i * padding) + gameObject.transform.position.z), Quaternion.identity);
                 node.name = "node (" + counter + ")";
                 grid.Add(node);
                 counter++;
