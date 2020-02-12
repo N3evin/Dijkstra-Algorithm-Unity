@@ -1,5 +1,5 @@
 # Dijkstra's Algorithm Unity
-[![HitCount](http://hits.dwyl.com/N3evin/Dijkstra-Algorithm-Unity.svg)](http://hits.dwyl.com/N3evin/Dijkstra-Algorithm-Unity)
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2FN3evin%2FDijkstra-Algorithm-Unity)
 
 Shortest path finding using Dijkstra's Algorithm in Unity 3D, coded with C#.
 
